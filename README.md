@@ -17,7 +17,7 @@ Pyrs: 0.020959854125976562
 ```
 
 # Motivation
-First, I'm interested in using [y-py](https://github.com/y-crdt/ypy) and potentially contributing to that library. It is a combined Python/Rust library though, a thin wrapper around the [https://github.com/y-crdt/y-crdt](Rust implementation of the Y CRDT). This repo is minimal example of a combined Python/Rust library.
+First, I'm interested in using [y-py](https://github.com/y-crdt/ypy) and potentially contributing to that library. It is a combined Python/Rust library though, a thin wrapper around the [Rust implementation of the Y CRDT](https://github.com/y-crdt/y-crdt). This repo is minimal example of a combined Python/Rust library.
 
 Second, I'm a big fan and user of [Pydantic](https://pydantic-docs.helpmanual.io/), and in their [V2 Plan](https://pydantic-docs.helpmanual.io/blog/pydantic-v2/) the `pydantic-core` will be written in Rust. 
 

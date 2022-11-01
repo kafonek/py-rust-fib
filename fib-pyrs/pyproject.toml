@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "fib-pyrs"
+version = "0.1.0"
+description = ""
+authors = ["Kafonek <matt.kafonek@noteable.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+maturin = "^0.13.7"
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["maturin>=0.13,<0.14"]
+build-backend = "maturin"

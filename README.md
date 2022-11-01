@@ -3,9 +3,9 @@
 A reference (learning) repo for:
 
  - Writing library code in vanilla Rust (`fib-rust`)
- - Writing a mixed Python-Rust library that uses the pure Rust lib (`fib-pyrs`)
+ - Writing a mixed Python-Rust library that wraps the pure Rust lib (`fib-pyrs`)
  - Writing library code in vanilla Python (`fib-python`)
- - Benchmarking the performance difference calling the pure Python vs Python-Rust functions
+ - Benchmarking the performance difference calling the pure Python vs Python-Rust bindings
 
 
 ```

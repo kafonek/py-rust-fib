@@ -16,6 +16,15 @@ Python: 7.522406816482544
 Pyrs: 0.020959854125976562
 ```
 
+# Motivation
+First, I'm interested in using [y-py](https://github.com/y-crdt/ypy) and potentially contributing to that library. It is a combined Python/Rust library though, a thin wrapper around the [https://github.com/y-crdt/y-crdt](Rust implementation of the Y CRDT). This repo is minimal example of a combined Python/Rust library.
+
+Second, I'm a big fan and user of [Pydantic](https://pydantic-docs.helpmanual.io/), and in their [V2 Plan](https://pydantic-docs.helpmanual.io/blog/pydantic-v2/) the `pydantic-core` will be written in Rust. 
+
+Third, I'm very interested in the [Pyodide](https://pyodide.org/en/stable/) and WASM space (also see [Pyscript](https://pyscript.net/) although I have been content with Pyodide features alone). I'm intrigued by the idea that Python can call into [any other wasm function](https://www.jhanley.com/blog/pyscript-interfacing-with-wasm/) in that runtime. I want to learn more about that. Not to mention I need to stay on top of the [Docker + WASM, or Docker vs WASM?](https://www.docker.com/blog/why-containers-and-webassembly-work-well-together/) conversation.
+
+Finally, I expect Rust will become a go-to language for enhancing Python performance in critical code paths, like C extensions have been used for in the past. I have never tried delving into `cython` or writing a C extension, so this is my first foray into lower level code.
+
 # Notes
 
 ## Poetry and Cargo

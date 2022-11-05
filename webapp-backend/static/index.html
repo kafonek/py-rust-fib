@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Py-Rust-Fib in webworker</title>
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+</head>
+
+<body>
+    <h1>Py-Rust-Fib demo in webworker</h1>
+    <form action="" onsubmit="sendMessage(event)">
+        <label for="fib">Generate Fib sequence through n:</label>
+        <!-- default 100,000 max 500,000 -->
+        <input type="number" id="fib" name="n" min="0" max="500000" value="100000">
+        <input type="submit" value="Submit">
+    </form>
+    <text id="result" aria-disabled="true">Waiting for webworker to be ready for calculations... </text>
+
+
+    <script>
+        // Instantiate webworker and attach callback to fill out "result" whenever it sends
+        // something to us
+        const worker = new Worker('./worker.js', { name: 'worker' });
+
+        callback_handler = function (event) {
+            console.log(event)
+            document.getElementById("result").innerHTML = JSON.stringify(Object.fromEntries(event.data));
+        }
+        worker.onmessage = callback_handler;
+
+        // callback handler for hitting "submit" in the fib generator form
+        function sendMessage(event, action) {
+            event.preventDefault()
+            var input = document.getElementById("fib")
+            worker.postMessage({ 'n': input.value })
+
+        }
+    </script>
+</body>

@@ -5,9 +5,9 @@ description = ""
 authors = ["Kafonek <matt.kafonek@noteable.io>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-fib-pyrs = {path = "../fib-pyrs"}
-fib-python = {path = "../fib-python"}
+python = "^3.11"
+fib-pyrs = {path = "../fib-pyrs/target/wheels/fib_pyrs-0.1.0-cp311-cp311-manylinux_2_28_x86_64.whl" }
+fib-python = {path = "../fib-python" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -15,7 +15,7 @@ isort = "^5.10.1"
 black = "^22.10.0"
 
 [tool.poetry.scripts]
-test = "benchmarks.main:run_tests"
+benchmark = "benchmarks.main:benchmark"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

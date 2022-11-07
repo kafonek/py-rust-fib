@@ -16,8 +16,9 @@ pyodide-py = "^0.22.0-alpha.1"
 
 # when micropip.install'ing the built wheel for this webworker app, it won't be able
 # to resolve the relative path. Put this in dev dependency so the built wheel doesn't
-# reference it, and be sure the worker.js setup code installs fib-python before webapp-webworker
+# reference it, and be sure the worker.js setup code installs these before webapp-webworker
 fib-python = { path = "../fib-python", develop = true }
+fib-pyrs = { path = "../fib-pyrs", develop = true }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

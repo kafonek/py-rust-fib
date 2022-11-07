@@ -7,11 +7,6 @@ edition = "2021"
 
 [dependencies]
 fib-rust = {path = "../fib-rust" }
-
-# Not possible to create with cargo commands, but could use Python maturin package
-# to do maturin new -b pyo3.. still would need to edit Cargo.toml manually to add features
-[dependencies.pyo3]
-version = "0.17.2"
-# "extension-module" tells pyo3 we want to build an extension module (skips linking against libpython.so)
-# "abi3-py37" tells pyo3 (and maturin) to build using the stable ABI with minimum Python version 3.7
-features = ["extension-module", "abi3-py37"]
+num-bigint = "0.4.3"
+num-traits = "0.2.15"
+pyo3 = { version = "0.17.3", features = ["num-bigint", "extension-module"] }

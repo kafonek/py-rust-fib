@@ -1,5 +1,6 @@
 import time
 
+import fib_pyrs
 import fib_python
 import js
 from pyodide import ffi
@@ -20,11 +21,25 @@ class API:
         js.console.log("on_webworker_message event.data: ", event.data)
         js.postMessage(ffi.to_js({"status": "processing"}))
         n = int(event.data.n)
-        start = time.time()
-        fib_python.fib(n)
-        duration = time.time() - start
 
-        js.postMessage(ffi.to_js({"status": "complete", "n": n, "duration": duration}))
+        fib_py_start = time.time()
+        fib_python.fib(n)
+        fib_py_duration = time.time() - fib_py_start
+
+        fib_pyrs_start = time.time()
+        fib_pyrs.fib(n)
+        fib_pyrs_duration = time.time() - fib_pyrs_start
+
+        js.postMessage(
+            ffi.to_js(
+                {
+                    "status": "complete",
+                    "n": n,
+                    "fib_py_duration": fib_py_duration,
+                    "fib_pyrs_duration": fib_pyrs_duration,
+                }
+            )
+        )
 
 
 api = API()

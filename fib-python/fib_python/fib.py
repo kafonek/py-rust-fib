@@ -1,11 +1,8 @@
-from typing import List
-
-
-def fib(n: int) -> List[int]:
-    """Return a list of the first n Fibonacci numbers, starting from zero."""
-    result = []
+def fib(n: int) -> int:
+    """Calculate the nth value of Fib sequence without recursion"""
+    if n <= 1:
+        return n
     a, b = 0, 1
-    while len(result) < n:
-        result.append(a)
+    for _ in range(n - 1):
         a, b = b, a + b
-    return result
+    return b

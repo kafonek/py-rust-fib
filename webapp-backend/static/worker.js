@@ -24,6 +24,9 @@ async function init() {
     #
     # fib_pyrs_wheel = f"{js.location.origin}/fib-pyrs/target/wheels/fib_pyrs-0.1.0-cp37-abi3-linux_x86_64.whl"
     # await micropip.install(fib_pyrs_wheel)
+    fib_pyrs_wheel = f"{js.location.origin}/fib-pyrs/target/wheels/fib_pyrs-0.1.0-cp310-cp310-emscripten_3_1_14_wasm32.whl"
+    await micropip.install(fib_pyrs_wheel)
+    import fib_pyrs
 
     webworker_wheel = f"{js.location.origin}/webapp-webworker/dist/webworker-0.1.0-py3-none-any.whl"
     await micropip.install(webworker_wheel, keep_going=True)

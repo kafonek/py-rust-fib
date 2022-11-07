@@ -62,13 +62,26 @@ optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 
 [[package]]
+name = "fib-pyrs"
+version = "0.1.0"
+description = ""
+category = "dev"
+optional = false
+python-versions = "^3.9"
+develop = true
+
+[package.source]
+type = "directory"
+url = "../fib-pyrs"
+
+[[package]]
 name = "fib-python"
 version = "0.1.0"
 description = ""
-category = "main"
+category = "dev"
 optional = false
 python-versions = "^3.9"
-develop = false
+develop = true
 
 [package.source]
 type = "directory"
@@ -125,15 +138,15 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "platformdirs"
-version = "2.5.2"
-description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
+version = "2.5.3"
+description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2021.7.5b38)", "proselint (>=0.10.2)", "sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4)"]
-test = ["appdirs (==1.4.4)", "pytest-cov (>=2.7)", "pytest-mock (>=3.6)", "pytest (>=6)"]
+docs = ["furo (>=2022.9.29)", "proselint (>=0.13)", "sphinx-autodoc-typehints (>=1.19.4)", "sphinx (>=5.3)"]
+test = ["appdirs (==1.4.4)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "pytest (>=7.2)"]
 
 [[package]]
 name = "pluggy"
@@ -222,7 +235,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "7e21fc1359a6a97e46fd4f6aa95afadcc49ffebbca04195412e63f2da56e6b01"
+content-hash = "9940101625ae1ba141c02118be5aafac049e11bc4734ebfe0b2964031f73f234"
 
 [metadata.files]
 atomicwrites = []
@@ -230,6 +243,7 @@ attrs = []
 black = []
 click = []
 colorama = []
+fib-pyrs = []
 fib-python = []
 isort = []
 more-itertools = []

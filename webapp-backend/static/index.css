@@ -1,0 +1,48 @@
+body {
+    font-family: Consolas, 'Courier New', Courier, monospace;
+    background-color: #222;
+    color: #eee;
+    padding: 1rem;
+}
+
+fieldset {
+    margin: 1rem 0rem;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(47, 154, 253);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #1a50ee;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #16389f;
+}
+
+button:disabled {
+    background-color: #333;
+    cursor: not-allowed;
+}
+
+input {
+    padding: 0.3rem;
+    border: none;
+    border-radius: 3px;
+}
+
+textarea {
+    background-color: #333;
+    color: white;
+}

@@ -52,3 +52,21 @@ It's worth mentioning here that depending on a vanilla Python libarary (`fib-pyt
 
 ## Unit vs Integration tests
 One thing I learned from this repo is Rust's definition of Unit vs Integration tests. Unit tests are tests that can access private functions, and need to be written in-line with the code (as seen in `fib-rust` despite that function being public). Integration tests live in the `tests/` folder and can only test public functions. That's not a distinction I would have made just working in the Python ecosystem.
+
+# Webapp
+
+WIP: I want to demonstrate running Python/Pyodide based code in a `webworker` that uses locally developed pure Python libraries (`fib-python`) as well as Python/Rust (`fib-pyrs`) or Rust/wasm (???) libraries.
+
+## Run
+
+1. `cd webapp-worker && poetry build`
+2. `cd webapp-backend && poetry install && poetry run uvicorn app.main:app --reload`
+
+This will start a server at `http://localhost:8000`. The FastAPI app serves the entire `py-rust-fib` repo as a static directory, so any files (`.whl`'s specifically) are accessible. Navigating to the site will redirect to `/webapp-backend/static/index.html` which starts a webworker (`/webapp-backend/static/worker.js`) that downloads and installs the `fib-python` library (`/fib-python/dist/fib_python-0.1.0-py3-none-any.whl`) with micropip. Then it does the same for the `webapp-webworker` application (`/webapp-webworker/dist/webworker-0.1.0-py3-none-any.whl`).
+
+When `worker.js` runs the line `self.pyodide.pyimport('webworker')`, `webapp-webworker/src/webworker/__init__.py` sets an `.onmessage` handler for the webworker and will handle any messages that the main document sends over. When you click "submit", a message is sent from the main document thread into the webworker, handled by Python/Pyodide code, and a response sent back to the main thread to render the status / duration.
+
+## TODO
+
+How do I use `fib-rust` in the Python/Pyodide webworker code? I can't use micropip to install `pyrs` because `maturin` built a wheel for my desktop system which is incompatible with WASM runtime: `ValueError: Wheel platform 'linux_x86_64' is not compatible with Pyodide's platform 'emscripten-3.1.14-wasm32'`.
+

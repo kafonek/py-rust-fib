@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "webworker"
+version = "0.1.0"
+description = ""
+authors = ["Kafonek <matt.kafonek@noteable.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+isort = "^5.10.1"
+black = "^22.10.0"
+pyodide-py = "^0.22.0-alpha.1"
+
+# when micropip.install'ing the built wheel for this webworker app, it won't be able
+# to resolve the relative path. Put this in dev dependency so the built wheel doesn't
+# reference it, and be sure the worker.js setup code installs fib-python before webapp-webworker
+fib-python = { path = "../fib-python", develop = true }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

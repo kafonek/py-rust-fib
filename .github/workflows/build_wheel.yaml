@@ -9,16 +9,25 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Python
-        uses: conda-incubator/setup-miniconda@v2
+        uses: actions/setup-python@v4
         with:
-          mamba-version: "*"
-          channels: conda-forge
           # Match Pyodide Python version which is 3.10.2 since 0.20.0
           # https://pyodide.org/en/stable/project/changelog.html#version-0-20-0
-          python-version: 3.10.2
+          python-version: '3.10.2'
         
       - name: Python version
-        run: conda info
+        run: python --version
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: '1.1.11'
+
+      - name: Poetry install venv
+        run: poetry install
+
+      - name: Poetry version
+        run: poetry debug
 
       - name: Setup emsdk
         uses: mymindstorm/setup-emsdk@v11

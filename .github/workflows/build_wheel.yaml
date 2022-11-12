@@ -25,9 +25,11 @@ jobs:
 
       - name: Poetry install venv
         run: poetry install
+        working-directory: ./fib-pyrs
 
       - name: Poetry version
         run: poetry debug
+        working-directory: ./fib-pyrs
 
       - name: Setup emsdk
         uses: mymindstorm/setup-emsdk@v11

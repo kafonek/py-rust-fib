@@ -46,6 +46,9 @@ jobs:
       - name: Rust version
         run: rustup -V
 
+      - name: Rustup add wasm32 target
+        run: rustup target add wasm32-unknown-emscripten
+
       - name: Setup emsdk
         uses: mymindstorm/setup-emsdk@v11
         with: 

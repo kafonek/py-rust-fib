@@ -54,6 +54,10 @@ jobs:
        
       - name: emsdk version
         run: emcc -v
+
+      - name: Build WASM wheel
+        run: poetry run maturin build --target wasm32-unknown-emscripten ---interpreter python3.10 --release
+        working-directory: ./fib-pyrs
       
 
 

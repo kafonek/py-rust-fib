@@ -1,0 +1,17 @@
+name: Build fib-pyrs wheel
+on: [push]
+
+jobs:
+  build-wasm-wheel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup emsdk
+        uses: mymindstorm/setup-emsdk@v11
+        with: 
+          # Match the emscripten version Pyodide 0.21.0-021.3 builds with
+          # https://pyodide.org/en/stable/project/changelog.html
+          version: 3.1.14 
+       
+      - name: emsdk version
+        run: emcc -v
+

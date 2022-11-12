@@ -38,7 +38,8 @@ jobs:
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
-            toolchain: stable
+            # maturin build will generate args -Z link-native-libraries=no which is only accepted on nightly compiler
+            toolchain: nightly
             components: rustfmt
             profile: minimal
 

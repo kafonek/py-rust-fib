@@ -40,9 +40,9 @@ jobs:
         with:
             # maturin build will generate args -Z link-native-libraries=no which is only accepted on nightly compiler
             toolchain: nightly
-            components: rustfmt
             profile: minimal
-
+            override: true
+      
       - name: Rust version
         run: rustup -V
 

@@ -30,6 +30,20 @@ jobs:
       - name: Poetry version
         run: poetry debug
         working-directory: ./fib-pyrs
+        
+      - name: Maturin version
+        run: poetry run maturin --version
+        working-directory: ./fib-pyrs
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: stable
+            components: rustfmt
+            profile: minimal
+
+      - name: Rust version
+        run: rustup -V
 
       - name: Setup emsdk
         uses: mymindstorm/setup-emsdk@v11

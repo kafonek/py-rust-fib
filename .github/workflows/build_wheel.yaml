@@ -5,13 +5,30 @@ jobs:
   build-wasm-wheel:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          mamba-version: "*"
+          channels: conda-forge
+          # Match Pyodide Python version which is 3.10.2 since 0.20.0
+          # https://pyodide.org/en/stable/project/changelog.html#version-0-20-0
+          python-version: 3.10.2
+        
+      - name: Python version
+        run: conda info
+
       - name: Setup emsdk
         uses: mymindstorm/setup-emsdk@v11
         with: 
-          # Match the emscripten version Pyodide 0.21.0-021.3 builds with
-          # https://pyodide.org/en/stable/project/changelog.html
+          # Match the emscripten version Pyodide builds with, which is 3.1.14 since 0.21.0
+          # https://pyodide.org/en/stable/project/changelog.html#version-0-21-0
           version: 3.1.14 
        
       - name: emsdk version
         run: emcc -v
+      
+
 

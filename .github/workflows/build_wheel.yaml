@@ -62,6 +62,12 @@ jobs:
       - name: Build WASM wheel
         run: poetry run maturin build --target wasm32-unknown-emscripten --interpreter python3.10 --release
         working-directory: ./fib-pyrs
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fib-pyrs
+          path: ./fib-pyrs
       
 
 

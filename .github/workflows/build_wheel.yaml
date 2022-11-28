@@ -66,8 +66,8 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: fib-pyrs
-          path: ./fib-pyrs
+          name: fib-pyrs-whl
+          path: ./fib-pyrs/target/wheels/fib_pyrs-0.1.0-cp310-cp310-emscripten_3_1_14_wasm32.whl
       
 
 

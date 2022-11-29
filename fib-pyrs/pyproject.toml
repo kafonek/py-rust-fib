@@ -5,7 +5,7 @@ description = ""
 authors = ["Kafonek <matt.kafonek@noteable.io>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 maturin = "^0.13.7"
 
 [tool.poetry.dev-dependencies]

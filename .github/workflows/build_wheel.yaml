@@ -94,11 +94,18 @@ jobs:
         with:
           name: wasm-wheels
 
+      - name: FS debug
+        shell: bash
+        run: |
+          ls -la
+          ls -la ./fib-pyrs
+          ls -la ./fib-pyrs/target/wheels
+
       - name: Attach assets to Release
         uses: softprops/action-gh-release@v1
         
         with:
-          files: ./fib-pyrs/target/wheels/*.whl
+          files: '*.whl'
         
       
 

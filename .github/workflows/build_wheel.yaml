@@ -15,6 +15,9 @@ jobs:
       matrix:
         python-version: ["3.10.2"]
         emscripten-version: ["3.1.14"]
+        - include:
+          python-version: "3.10.2"
+          python-interpreter: "3.10"
       
     runs-on: ubuntu-latest
     steps:
@@ -69,7 +72,7 @@ jobs:
         run: emcc -v
 
       - name: Build WASM wheel
-        run: poetry run maturin build --target wasm32-unknown-emscripten --release --interpreter python${{ matrix.python-version }}
+        run: poetry run maturin build --target wasm32-unknown-emscripten --release --interpreter python${{ matrix.python-interpreter }}
         working-directory: ./fib-pyrs
 
       - name: Upload artifacts

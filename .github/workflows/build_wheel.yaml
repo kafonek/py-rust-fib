@@ -1,10 +1,20 @@
-name: Build fib-pyrs wheel
-on: [push]
+name: Attach fib-pyrs wheel to Release
+on: 
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   build-wasm-wheel:
-    permissions:
-      contents: write
+    # Pyodide began supporting micropip.install from emscripten-compiled binary wheels
+    # in Pyodide 0.21.0 (Aug 2022), so no need to build wheels for versions before then.
+    # As of Nov 2022, the matrix for emscripten/python versions since then is simple. 
+    # Update this matrix when new Pyodide versions come out that bump the Python interpreter
+    # or emscripten version. Ref: https://pyodide.org/en/stable/project/changelog.html
+    strategy:
+      matrix:
+        python-version: ["3.10.2"]
+        emscripten-version: ["3.1.14"]
       
     runs-on: ubuntu-latest
     steps:
@@ -14,9 +24,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v4
         with:
-          # Match Pyodide Python version which is 3.10.2 since 0.20.0
-          # https://pyodide.org/en/stable/project/changelog.html#version-0-20-0
-          python-version: '3.10.2'
+          python-version: ${{ matrix.python-version }}
         
       - name: Python version
         run: python --version
@@ -55,28 +63,34 @@ jobs:
       - name: Setup emsdk
         uses: mymindstorm/setup-emsdk@v11
         with: 
-          # Match the emscripten version Pyodide builds with, which is 3.1.14 since 0.21.0
-          # https://pyodide.org/en/stable/project/changelog.html#version-0-21-0
-          version: 3.1.14 
+          version: ${{ matrix.emscripten-version }}
        
       - name: emsdk version
         run: emcc -v
 
       - name: Build WASM wheel
-        run: poetry run maturin build --target wasm32-unknown-emscripten --interpreter python3.10 --release
+        run: poetry run maturin build --target wasm32-unknown-emscripten --release --interpreter ${{ matrix.python-version }}
         working-directory: ./fib-pyrs
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: fib-pyrs-whl
-          path: ./fib-pyrs/target/wheels/fib_pyrs-0.1.0-cp310-cp310-emscripten_3_1_14_wasm32.whl
+          name: wasm-wheels
+          path: ./fib-pyrs/target/wheels
 
-      - name: Release
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: wasm-wheels
+          
+      - name: Attach assets to Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ./fib-pyrs/target/wheels/fib_pyrs-0.1.0-cp310-cp310-emscripten_3_1_14_wasm32.whl
+          files: ./fib-pyrs/target/wheels/*.whl
         
       
 

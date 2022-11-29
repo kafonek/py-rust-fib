@@ -1,5 +1,8 @@
 name: Attach fib-pyrs wheel to Release
 on: [push]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-wasm-wheel:
@@ -66,7 +69,7 @@ jobs:
         run: emcc -v
 
       - name: Build WASM wheel
-        run: poetry run maturin build --target wasm32-unknown-emscripten --release --interpreter ${{ matrix.python-version }}
+        run: poetry run maturin build --target wasm32-unknown-emscripten --release --interpreter python${{ matrix.python-version }}
         working-directory: ./fib-pyrs
 
       - name: Upload artifacts
